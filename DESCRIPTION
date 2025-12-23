@@ -25,4 +25,6 @@ Imports:
     argparse,
     jsonlite,
     stringr,
-    tibble
+    tibble,
+    RColorBrewer,
+    bsicons
