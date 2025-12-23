@@ -58,5 +58,19 @@ Detailed documentation is available in the `docs/` directory:
 - `www/`: Application styling and assets.
 
 ---
-**Author**: Md Arshad  
-**License**: MIT
+
+## Citation
+
+If you use this toolkit in your research, please cite:
+
+> Arshad, M., Global ADMET Index (GAI) a mathematical toolkit, Jamia Millia Islamia
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+**Author**: MD. Arshad  
+**Institution**: Jamia Millia Islamia
