@@ -1,0 +1,27 @@
+---
+title: "Global ADMET Index (GAI) Report"
+output: pdf_document
+params:
+  summary_data: NA
+  plots_dir: NA
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# GAI Summary
+
+```{r summary_table}
+knitr::kable(params$summary_data)
+```
+
+# Plots
+
+```{r plots, results='asis'}
+plot_files <- list.files(params$plots_dir, full.names = TRUE)
+for (plot_file in plot_files) {
+  cat(paste0("![](", plot_file, "))\n\n")
+}
+```
+

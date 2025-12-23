@@ -1,0 +1,28 @@
+Package: GAI
+Title: Global ADMET Index (GAI)
+Version: 0.1.0
+Authors@R: person("MD.", "Arshad", email = "arshad10867c@gmail.com", role = c("aut", "cre"))
+Description: A Shiny web application to compute and visualize a unified ADMET index from diverse predictive endpoints.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny,
+    bslib,
+    DT,
+    ggplot2,
+    dplyr,
+    readr,
+    rmarkdown,
+    knitr,
+    plotly,
+    shinyjs,
+    shinybusy,
+    zip,
+    digest,
+    purrr,
+    tidyr,
+    argparse,
+    jsonlite,
+    stringr,
+    tibble

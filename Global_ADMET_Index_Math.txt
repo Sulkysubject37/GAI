@@ -1,0 +1,140 @@
+# =============================
+# Global ADMET Index (GAI) - Detailed Mathematical Model and Description
+# =============================
+
+## 1. Overview
+The **Global ADMET Index (GAI)** is a composite metric designed to quantify a molecule’s overall pharmacokinetic and toxicity potential by integrating multiple categories of ADMET parameters from different prediction tools (e.g., ADMETlab 3.0, SwissADME, DeepPK).
+
+The GAI is represented on a normalized 0–100 scale, where:
+- **Higher GAI (≥70):** Excellent overall ADMET profile (green zone)
+- **Moderate GAI (40–69):** Acceptable, needs optimization (yellow zone)
+- **Low GAI (<40):** Poor drug-likeness or safety (red zone)
+
+---
+
+## 2. Structural Formula
+GAI is computed as a **weighted aggregation** of six major sub-indices:
+
+GAI = (Σ(Wᵢ × Sᵢ)) / Σ(Wᵢ) × 100
+
+Where:
+- **Sᵢ** = Subscore for ADMET subgroup *i* (scaled 0–1)
+- **Wᵢ** = Weight assigned to subgroup *i*
+- Subgroups: Absorption, Distribution, Metabolism, Excretion, Toxicity, Physicochemical Properties
+
+| Subgroup | Weight (Wᵢ) | Description |
+|-----------|-------------|--------------|
+| Absorption | 0.20 | Includes HIA, Caco-2, P-gp, logP/logD |
+| Distribution | 0.15 | BBB, PPB, VDss, Fu |
+| Metabolism | 0.20 | CYP inhibition/substrate, Phase I/II markers |
+| Excretion | 0.10 | t1/2, CLint, Renal clearance indicators |
+| Toxicity | 0.25 | Ames, DILI, hERG, Carcinogenicity, LD50 |
+| Physicochemical | 0.10 | MW, TPSA, Fsp3, Rotatable Bonds, QED |
+
+---
+
+## 3. Subgroup Computation
+
+### 3.1. Absorption Score (S_abs)
+Derived from passive and active transport indicators:
+
+S_abs = (0.4 × norm(HIA)) + (0.3 × norm(Caco2)) + (0.2 × norm(Pgp_sub)) + (0.1 × norm(logP))
+
+### 3.2. Distribution Score (S_dist)
+Reflects systemic distribution and tissue permeability:
+
+S_dist = (0.4 × norm(BBB)) + (0.3 × (1 - norm(PPB))) + (0.3 × norm(Fu))
+
+### 3.3. Metabolism Score (S_met)
+Balances enzyme inhibition and metabolic stability:
+
+S_met = 1 - mean(CYP_inhibitors_flagged) × penalty_factor
+
+Where *penalty_factor = 0.2* for each major CYP (1A2, 2C9, 2C19, 2D6, 3A4).
+
+### 3.4. Excretion Score (S_exc)
+Captures elimination potential:
+
+S_exc = (0.6 × norm(1 / CLint)) + (0.4 × norm(t_half))
+
+### 3.5. Toxicity Score (S_tox)
+Weighted toxicity indicators:
+
+S_tox = 1 - [(Ames + DILI + hERG + Carcinogenicity + LD50_risk) / n]
+
+Where boolean values are treated as binary flags (1 = toxic, 0 = safe).
+
+### 3.6. Physicochemical Score (S_phys)
+Evaluates structural drug-likeness:
+
+S_phys = (0.3 × norm(QED)) + (0.2 × (1 - norm(MW))) + (0.2 × (1 - norm(TPSA))) +
+          (0.1 × norm(Fsp3)) + (0.2 × (1 - norm(RotatableBonds)))
+
+---
+
+## 4. Normalization and Scaling
+
+Normalization is done feature-wise between [0,1] using dynamic min–max scaling:
+
+norm(x) = (x - min_x) / (max_x - min_x)
+
+Toxicity endpoints are inverted (e.g., high Ames probability → low normalized score).
+
+---
+
+## 5. Aggregation and Interpretation
+
+GAI_raw = Σ(Wᵢ × Sᵢ)
+GAI = round(GAI_raw × 100, 2)
+
+| GAI Range | Interpretation |
+|------------|----------------|
+| 80–100 | Excellent ADMET profile |
+| 60–79 | Good; may require optimization |
+| 40–59 | Moderate risk |
+| 20–39 | Poor ADMET characteristics |
+| 0–19  | Toxic or unstable molecule |
+
+---
+
+## 6. Visualization Strategy (in app)
+
+- **Radar Plot:** Displays S_abs, S_dist, S_met, S_exc, S_tox, S_phys
+- **Bar Plot:** Shows endpoint-level contributions within each subgroup
+- **Gauge Plot:** Visualizes the final GAI (0–100)
+
+---
+
+## 7. Compatibility Layers
+
+Each input type (ADMETlab, SwissADME, DeepPK) undergoes preprocessing to align with standardized endpoint labels:
+
+| Tool | Key Identifiers | Normalized Mapping |
+|------|------------------|--------------------|
+| ADMETlab 3.0 | taskId, Lipinski, CYP*, Ames | Direct to GAI endpoints |
+| SwissADME | XLOGP3, iLOGP, GI absorption | Converted to standard names |
+| DeepPK | Absorption.*, Distribution.*, Toxicity.* | Flattened JSON to long table |
+
+---
+
+## 8. Mathematical Sanity Check (Example)
+
+For a molecule with subscores:
+
+S_abs=0.9, S_dist=0.8, S_met=0.6, S_exc=0.7, S_tox=0.4, S_phys=0.8
+
+Then:
+GAI = [(0.2×0.9)+(0.15×0.8)+(0.2×0.6)+(0.1×0.7)+(0.25×0.4)+(0.1×0.8)] / 1 × 100
+GAI = 67.5 → “Good ADMET profile”
+
+---
+
+## 9. Notes on Future Expansion
+
+- Integration of **QSAR-based uncertainty weighting**
+- Inclusion of **polypharmacology-based toxicity modifiers**
+- Support for **multi-compound batch GAI summaries**
+
+---
+Author: Md Arshad  
+Version: 1.2 (2025-10-22)

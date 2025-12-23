@@ -1,0 +1,4 @@
+#!/bin/sh
+# This is a simple wrapper script to make running the GAI CLI easier.
+# It passes all arguments directly to the R script.
+Rscript "$(dirname "$0")/scripts/run_gai.R" "$@"

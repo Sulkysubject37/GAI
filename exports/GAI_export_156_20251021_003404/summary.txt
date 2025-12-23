@@ -1,0 +1,12 @@
+Global ADMET Index (GAI): 15.05
+Interpretation: Poor ADMET profile (Red)
+
+
+2025-10-21 00:32:07 - File uploaded: ADMETlab3_result64.csv
+2025-10-21 00:32:07 - Read CSV with 1 rows, 125 cols
+2025-10-21 00:32:07 - Attempting automatic detection & preprocessing via load_ADMET_data()
+2025-10-21 00:32:08 - Parsed into long format: 108 rows x 5 cols
+2025-10-21 00:32:08 - Parsed preview ready.
+2025-10-21 00:32:47 - Calling compute_GAI() ...
+2025-10-21 00:32:47 - ✅ GAI computed: 15.05
+
