@@ -37,6 +37,9 @@ ui <- page_navbar(
   bg = "#004c6d",
   inverse = TRUE,
   fillable = TRUE,
+  header = tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
+  ),
   
   # --- Sidebar (Common) ---
   sidebar = sidebar(

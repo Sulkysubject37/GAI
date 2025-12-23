@@ -15,6 +15,8 @@ GAI/
 │   ├── compute_GAI.R      # Mathematical scoring engine
 │   ├── utils.R            # Shared helper functions
 │   └── preprocess_*.R     # Tool-specific normalizers
+├── www/                 # Static Assets (CSS, JS, Logos)
+├── modules/             # Shiny Modules (Modular logic)
 ├── docs/                # Documentation
 └── data/                # Sample datasets (ADMETlab, pkCSM, etc.)
 ```
@@ -38,7 +40,7 @@ The system follows a strict 3-step pipeline to ensure "Unflawed" results:
 - It performs text-to-probability conversion (e.g., "Safe" -> `0`, "Active" -> `1`).
 - It applies the GAI Mathematical Model to generate subgroup scores and the final index.
 
-## 3. The "Unflawed" Philosophy
+## 3. Modular Architecture
+- **Web UI Assets (`www/`)**: Custom styling is decoupled into `styles.css`, keeping `app.R` focused on logic.
+- **Shiny Modules (`modules/`)**: High-complexity UI components (like the multi-plot dashboard) are designed to be modularized here for better maintainability.
 - **Single Source of Truth**: All weights and regex patterns reside in `R/config_endpoints.R`. Changing a weight here updates both the CLI and the Shiny App simultaneously.
-- **Robustness**: Regex patterns use `.` wildcards to handle diverse formatting across different tool versions.
-- **Exclusion**: Properties not defined in the mathematical model are categorized as `Other` and ignored in the final score calculation, preventing noise from affecting the GAI.
