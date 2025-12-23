@@ -1,0 +1,15 @@
+# R specific
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.DS_Store
+
+# Output directories
+gai_output/
+output_*/
+exports/
+temp/
+
+# Logs
+*.log
