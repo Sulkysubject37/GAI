@@ -136,5 +136,5 @@ GAI = 67.5 → “Good ADMET profile”
 - Support for **multi-compound batch GAI summaries**
 
 ---
-Author: Md Arshad  
+Author: MD. Arshad  
 Version: 2.0.1 (2025-12-23)
