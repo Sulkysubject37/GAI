@@ -63,7 +63,7 @@ Detailed documentation is available in the `docs/` directory:
 
 If you use this toolkit in your research, please cite:
 
-> Arshad, M., Global ADMET Index (GAI) a mathematical toolkit, Jamia Millia Islamia
+> Arshad, M. (2025). Global ADMET Index (GAI): v2.0.1 (v2.0.1). Zenodo. https://doi.org/10.5281/zenodo.18030940
 
 ---
 
