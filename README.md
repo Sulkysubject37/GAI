@@ -14,9 +14,9 @@ remotes::install_deps()
 ```
 
 ### 2. Run the Web App
-Launch the interactive Shiny dashboard:
-```bash
-R -e "shiny::runApp('app.R')"
+Launch the interactive Shiny App:
+```
+https://sulkysubject37.shinyapps.io/GAI-Analyzer/
 ```
 
 ### 3. Run the CLI
