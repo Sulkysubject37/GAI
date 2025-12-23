@@ -1,4 +1,4 @@
-# Global ADMET Index (GAI) Analyzer
+# Global ADMET Index (GAI) Analyzer [v2.0.1]
 
 A unified platform for ADMET profiling, scoring, and visualization. GAI integrates data from multiple predictive tools into a single, interpretable index (0-100) to accelerate drug discovery workflows.
 

@@ -137,4 +137,4 @@ GAI = 67.5 → “Good ADMET profile”
 
 ---
 Author: Md Arshad  
-Version: 1.2 (2025-10-22)
+Version: 2.0.1 (2025-12-23)

@@ -130,19 +130,19 @@ ui <- page_navbar(
   ),
 
   # --- Tab 4: Settings/About ---
-  nav_panel(
-    title = "Info",
-    icon = icon("info-circle"),
-    card(
-      card_header("About GAI v1.2"),
-      p("Author: MD. Arshad"),
-      p("Standard: Global ADMET Index Math Model v1.2"),
-      hr(),
-      p("This tool is designed for medicinal chemistry and pharmacokinetic research. 
-         Predicted values should be validated with experimental assays.")
-    )
-  )
-)
+      nav_panel(
+      title = "Info",
+      icon = icon("info-circle"),
+      card(
+        card_header("About GAI v2.0.1"),
+        p("Author: MD. Arshad"),
+        p("Version: 2.0.1"),
+        p("Standard: Global ADMET Index Math Model v1.2"),
+        hr(),
+        p("This tool is designed for medicinal chemistry and pharmacokinetic research. 
+           Predicted values should be validated with experimental assays.")
+      )
+    ))
 
 # ---- Server Logic ----
 server <- function(input, output, session) {

@@ -34,7 +34,7 @@ EOL
 cat <<EOL > $BASE_DIR/DESCRIPTION
 Package: GAI
 Title: Global ADMET Index (GAI)
-Version: 0.1.0
+Version: 2.0.1
 Authors@R: person("YourName", "Surname", email = "you@example.com", role = c("aut", "cre"))
 Description: A Shiny web application to compute and visualize a unified ADMET index from diverse predictive endpoints.
 License: MIT
